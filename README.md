@@ -1,3 +1,9 @@
+<style>
+    img {
+        max-width: 300px;
+        height: auto;
+    }
+</style>
 ![Alt text](/Assets/htg1.jpg)
 # About:
 
