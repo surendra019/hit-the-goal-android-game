@@ -1,4 +1,4 @@
-<div styles="height: 100px;"><img src="/Assets/htg1.jpg" styles="width: 100px;"></div>
+<img src="/Assets/htg1.jpg" styles="width: 10px;">
 # About:
 
 This project is made using Godot v3.5.3. You can import and modify it.
