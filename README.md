@@ -1,4 +1,4 @@
-![Alt text]("/Assets/htg1.jpg")
+![Alt text](/Assets/htg1.jpg)
 # About:
 
 This project is made using Godot v3.5.3. You can import and modify it.
