@@ -1,3 +1,4 @@
+<img src="/Assets/htg1.png">
 # About:
 
 This project is made using Godot v3.5.3. You can import and modify it.
