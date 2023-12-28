@@ -1,4 +1,4 @@
-<img src="/Assets/htg1.jpg" width="100px">
+<img src="/Assets/htg1.jpg" width="200px">
 <!-- ![Alt text](/Assets/htg1.jpg) -->
 # About:
 
