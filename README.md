@@ -1,4 +1,4 @@
-<div style="display:flex;">
+<div style="display:flex; justify-content: center;">
     <img src="/Assets/htg1.jpg" width="200px">
 <img src="/Assets/htg2.jpg" width="200px">
 <img src="/Assets/htg3.jpg" width="200px">
