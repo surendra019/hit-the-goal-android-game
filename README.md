@@ -1,10 +1,5 @@
-<style>
-    img {
-        max-width: 300px;
-        height: auto;
-    }
-</style>
-![Alt text](/Assets/htg1.jpg)
+<img src="/Assets/htg1.jpg" width="100px">
+<!-- ![Alt text](/Assets/htg1.jpg) -->
 # About:
 
 This project is made using Godot v3.5.3. You can import and modify it.
