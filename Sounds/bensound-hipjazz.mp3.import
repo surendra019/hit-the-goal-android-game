@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bensound-hipjazz.mp3-84d53a0870c4aed0f20c64dc6df03794.mp3str"
+
+[deps]
+
+source_file="res://Sounds/bensound-hipjazz.mp3"
+dest_files=[ "res://.import/bensound-hipjazz.mp3-84d53a0870c4aed0f20c64dc6df03794.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

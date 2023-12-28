@@ -1,0 +1,144 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/violet_bg.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/in_game.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Pause.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/pricedown bl.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/football goal.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/line1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/line2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/line3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/line4.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/pause.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 4 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 73.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 45.9 )
+
+[node name="in_game" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="score_lbl" type="Label" parent="." groups=["current_score"]]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 74.0
+margin_right = 229.0
+margin_bottom = 89.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+
+[node name="lines" type="Node2D" parent="."]
+
+[node name="line1" parent="lines" instance=ExtResource( 6 )]
+
+[node name="line2" parent="lines" instance=ExtResource( 7 )]
+
+[node name="line3" parent="lines" instance=ExtResource( 8 )]
+
+[node name="line4" parent="lines" instance=ExtResource( 9 )]
+
+[node name="goal" type="Area2D" parent="." groups=["goal"]]
+position = Vector2( 151, 290 )
+scale = Vector2( 0.7, 0.7 )
+z_index = 1
+
+[node name="Sprite" type="Sprite" parent="goal"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal"]
+position = Vector2( 0, -4 )
+shape = SubResource( 2 )
+
+[node name="ball_spawn_position" type="Position2D" parent="."]
+position = Vector2( 151, 539 )
+
+[node name="ball_container" type="Node2D" parent="." groups=["ball_container"]]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="pause_btn" type="TextureButton" parent="UI"]
+margin_left = -5.0
+margin_top = 11.0
+margin_right = 111.0
+margin_bottom = 127.0
+rect_scale = Vector2( 0.8, 0.8 )
+texture_normal = ExtResource( 3 )
+
+[node name="boundary" type="Node2D" parent="."]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="boundary"]
+position = Vector2( 328, 313 )
+scale = Vector2( 1, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundary/StaticBody2D2"]
+position = Vector2( 7, 13.2 )
+shape = SubResource( 3 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="boundary"]
+position = Vector2( 150, -37 )
+rotation = 1.5708
+scale = Vector2( 1, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundary/StaticBody2D3"]
+position = Vector2( 5, 0.2 )
+shape = SubResource( 3 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="boundary"]
+position = Vector2( 150, -37 )
+rotation = 1.5708
+scale = Vector2( 1, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundary/StaticBody2D4"]
+position = Vector2( 703, 0.299995 )
+shape = SubResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="boundary"]
+position = Vector2( -35, 312 )
+scale = Vector2( 1, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundary/StaticBody2D"]
+position = Vector2( 3, -0.4 )
+shape = SubResource( 3 )
+
+[node name="line_spawner" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="screens" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Pause" parent="screens" instance=ExtResource( 10 )]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+anchor_mode = 0
+current = true
+script = ExtResource( 11 )
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+one_shot = true
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BG" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 58.0
+margin_bottom = 166.0
+rect_scale = Vector2( 0.9, 0.8 )
+texture = ExtResource( 1 )
+
+[connection signal="button_down" from="UI/pause_btn" to="." method="_on_pause_btn_button_down"]
+[connection signal="timeout" from="line_spawner" to="." method="_on_line_spawner_timeout"]
+[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_Timer_timeout"]

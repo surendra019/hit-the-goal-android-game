@@ -1,0 +1,118 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/black_bg.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Line 01.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/pricedown bl.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Menu.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/Play.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Quit.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Settings.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 4 )
+
+[sub_resource type="ButtonGroup" id=2]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="bg" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -3.0
+margin_right = 3.0
+margin_bottom = 8.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="line1" type="Sprite" parent="."]
+position = Vector2( 0, 100 )
+rotation = 1.5708
+scale = Vector2( 0.7, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="line2" type="Sprite" parent="."]
+position = Vector2( 302, 100 )
+rotation = 1.5708
+scale = Vector2( 0.7, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Head" type="Label" parent="."]
+margin_left = 57.0
+margin_top = 56.0
+margin_right = 257.0
+margin_bottom = 203.0
+custom_fonts/font = ExtResource( 5 )
+text = "HIT THE 
+GOAL"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="best_score" type="Label" parent="." groups=["best_score"]]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -87.0
+margin_top = 220.0
+margin_right = 87.0
+margin_bottom = 250.0
+custom_fonts/font = SubResource( 1 )
+text = "best score : "
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -96.0
+margin_top = -354.0
+margin_right = 189.0
+margin_bottom = 58.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_constants/separation = -20
+
+[node name="play_btn" type="TextureButton" parent="Buttons"]
+margin_right = 285.0
+margin_bottom = 298.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 2 )
+texture_normal = ExtResource( 6 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+margin_top = 278.0
+margin_right = 285.0
+margin_bottom = 412.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="exit_btn" type="TextureButton" parent="Buttons/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 2 )
+texture_normal = ExtResource( 7 )
+
+[node name="settings_btn" type="TextureButton" parent="Buttons/HBoxContainer"]
+margin_left = 144.0
+margin_right = 285.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+group = SubResource( 2 )
+texture_normal = ExtResource( 8 )
+
+[connection signal="button_down" from="Buttons/play_btn" to="." method="_on_play_btn_button_down"]
+[connection signal="pressed" from="Buttons/play_btn" to="." method="_on_play_btn_pressed"]
+[connection signal="button_down" from="Buttons/HBoxContainer/exit_btn" to="." method="_on_exit_btn_button_down"]
+[connection signal="pressed" from="Buttons/HBoxContainer/exit_btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="button_down" from="Buttons/HBoxContainer/settings_btn" to="." method="_on_settings_btn_button_down"]
+[connection signal="pressed" from="Buttons/HBoxContainer/settings_btn" to="." method="_on_settings_btn_pressed"]
